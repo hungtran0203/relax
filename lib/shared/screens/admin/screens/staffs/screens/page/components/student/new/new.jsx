@@ -5,10 +5,13 @@ import React, {PropTypes} from 'react';
 
 export default class NewStudentForm extends Component {
   static propTypes = {
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    birthdate: PropTypes.string.isRequired,
+    parentName: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    registerDate: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    notes: PropTypes.string.isRequired,
     changeField: PropTypes.func.isRequired,
     submit: PropTypes.func.isRequired,
     loading: PropTypes.bool
@@ -19,51 +22,51 @@ export default class NewStudentForm extends Component {
   }
 
   render () {
-    const {username, password, name, email, submit, loading} = this.props;
+    const {name, birthdate, parentName, phone, registerDate, email, notes, submit, loading} = this.props;
     return (
       <ModalNew submit={submit} loading={loading} submitLabel="Dang ki">
         <ModalInput
           focus
-          value={username}
+          value={name}
           placeholder='Ho va ten'
-          onChange={this.changeField.bind(this, 'username')}
+          onChange={this.changeField.bind(this, 'name')}
         />
         <ModalInput
           focus
-          value={password}
-          type='password'
+          value={birthdate}
           placeholder='Ngay sinh'
-          onChange={this.changeField.bind(this, 'password')}
+          onChange={this.changeField.bind(this, 'birthdate')}
         />
         <ModalInput
           focus
-          value={name}
+          value={parentName}
           placeholder='Ten phu huynh'
-          onChange={this.changeField.bind(this, 'name')}
+          onChange={this.changeField.bind(this, 'parentName')}
         />
         <ModalInput
           focus
-          value={name}
+          value={phone}
           placeholder='Dien thoai lien he'
-          onChange={this.changeField.bind(this, 'name')}
+          onChange={this.changeField.bind(this, 'phone')}
         />
         <ModalInput
           focus
-          value={name}
+          value={registerDate}
           placeholder='Ngay dang ki'
-          onChange={this.changeField.bind(this, 'name')}
+          onChange={this.changeField.bind(this, 'registerDate')}
         />
         <ModalInput
           focus
           value={email}
+          type="email"
           placeholder='Email'
           onChange={this.changeField.bind(this, 'email')}
         />
         <ModalInput
           focus
-          value={name}
+          value={notes}
           placeholder='Ghi chu'
-          onChange={this.changeField.bind(this, 'name')}
+          onChange={this.changeField.bind(this, 'notes')}
         />
       </ModalNew>
     );

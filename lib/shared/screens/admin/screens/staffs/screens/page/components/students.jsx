@@ -16,7 +16,7 @@ export default class Students extends Component {
   static fragments = List.fragments;
 
   static propTypes = {
-    users: PropTypes.array.isRequired,
+    students: PropTypes.array.isRequired,
     openNew: PropTypes.func.isRequired,
     newOpened: PropTypes.bool.isRequired,
     closeNew: PropTypes.func.isRequired,
@@ -33,7 +33,7 @@ export default class Students extends Component {
   };
 
   render () {
-    const {users, openNew, onDelete, search, searchChange, display, displayChange} = this.props;
+    const {students, openNew, onDelete, search, searchChange, display, displayChange} = this.props;
 
     return (
       <div>
@@ -46,7 +46,7 @@ export default class Students extends Component {
         </ContentHeader>
         <Content noPadding={display === 'list'}>
           <List
-            users={users}
+            students={students}
             onDelete={onDelete}
             search={search}
             display={display}
@@ -74,7 +74,7 @@ export default class Students extends Component {
     if (deleteConfirm) {
       return (
         <ModalDelete
-          title={`Are you sure you want to remove the user "${deleteConfirmUser.name}"?`}
+          title={`Are you sure you want to remove the student "${deleteConfirmUser.name}"?`}
           cancel={cancelDelete}
           submit={confirmDelete}
           loading={deletingUser}

@@ -1,11 +1,11 @@
 import bind from 'decorators/bind';
 import Component from 'components/component';
 import React, {PropTypes} from 'react';
-import {addUser} from 'actions/users';
+import {addStudent} from 'actions/student';
 
 import New from './new';
 
-export default class NewUserContainer extends Component {
+export default class NewStudentContainer extends Component {
   static propTypes = {
     fragments: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired
@@ -17,10 +17,14 @@ export default class NewUserContainer extends Component {
 
   getInitState () {
     return {
-      username: '',
-      password: '',
-      email: '',
       name: '',
+      birthdate: '',
+      parentName: '',
+      phone: '',
+      registerDate: '',
+      email: '',
+      notes: '',
+
       loading: false
     };
   }
@@ -33,8 +37,11 @@ export default class NewUserContainer extends Component {
       }, () => {
         const {store} = this.context;
         const {fragments, onClose} = this.props;
-        const {username, password, email, name} = this.state;
-        store.dispatch(addUser(fragments, {username, password, email, name}, true)).then(() => {
+        console.log(this.state)
+        const {name, birthdate, parentName, phone, registerDate, email, notes} = this.state;
+        const actionData = {name, birthdate, parentName, phone, registerDate, email, notes};
+        console.log(actionData, 'lllllllllllll')
+        store.dispatch(addStudent(fragments, actionData, true)).then(() => {
           onClose && onClose();
         });
       });

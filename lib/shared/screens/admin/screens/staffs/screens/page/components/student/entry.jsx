@@ -9,7 +9,7 @@ import styles from './entry.less';
 
 export default class Entry extends Component {
   static fragments = {
-    user: {
+    student: {
       _id: 1,
       name: 1,
       email: 1
@@ -17,30 +17,30 @@ export default class Entry extends Component {
   };
 
   static propTypes = {
-    user: PropTypes.object.isRequired,
+    student: PropTypes.object.isRequired,
     onDelete: PropTypes.func.isRequired,
     display: PropTypes.string.isRequired
   };
 
   @bind
   onDeleteClick () {
-    const {user, onDelete} = this.props;
-    onDelete(user);
+    const {student, onDelete} = this.props;
+    onDelete(student);
   }
 
   render () {
-    const {user, display} = this.props;
-    const url = getGravatarImage(user.email, 125);
+    const {student, display} = this.props;
+    const url = getGravatarImage(student.email, 125);
 
     return (
       <div className={cx(styles.root, styles[display])}>
-        <Link to={`/admin/users/${user._id}`} className={styles.link}>
-          <div className={styles.user}>
+        <Link to={`/admin/students/${student._id}`} className={styles.link}>
+          <div className={styles.student}>
             <img src={url} role='presentation' />
           </div>
           <div className={styles.info}>
-            <div className={styles.title}>{user.name}</div>
-            <div className={styles.value}>{user.email}</div>
+            <div className={styles.title}>{student.name}</div>
+            <div className={styles.value}>{student.email}</div>
           </div>
         </Link>
         <div className={styles.actions}>

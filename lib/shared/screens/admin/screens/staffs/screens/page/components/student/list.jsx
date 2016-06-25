@@ -5,35 +5,35 @@ import Entry from './entry';
 
 export default class List extends Component {
   static fragments = {
-    users: Entry.fragments.user
+    students: Entry.fragments.student
   };
 
   static propTypes = {
-    users: PropTypes.array.isRequired,
+    students: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired,
     search: PropTypes.string.isRequired,
     display: PropTypes.string.isRequired
   };
 
   render () {
-    const {users} = this.props;
+    const {students} = this.props;
     return (
       <div>
-        {users.map(this.renderEntry, this)}
+        {students.map(this.renderEntry, this)}
       </div>
     );
   }
 
-  renderEntry (user) {
+  renderEntry (student) {
     const {onDelete, search, display} = this.props;
-    const inSearch = !search || user.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    const inSearch = !search || student.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     if (inSearch) {
       return (
         <Entry
-          user={user}
+          student={student}
           onDelete={onDelete}
           display={display}
-          key={user._id}
+          key={student._id}
         />
       );
     }
