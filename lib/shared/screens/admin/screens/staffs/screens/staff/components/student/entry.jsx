@@ -12,6 +12,7 @@ export default class Entry extends Component {
     student: {
       _id: 1,
       name: 1,
+      slug: 1,
       email: 1
     }
   };
@@ -34,13 +35,12 @@ export default class Entry extends Component {
 
     return (
       <div className={cx(styles.root, styles[display])}>
-        <Link to={`/admin/students/${student._id}`} className={styles.link}>
+        <Link to={`/admin/staffs/student/${student._id}`} className={styles.link}>
           <div className={styles.student}>
             <img src={url} role='presentation' />
           </div>
           <div className={styles.info}>
             <div className={styles.title}>{student.name}</div>
-            <div className={styles.value}>{student.email}</div>
           </div>
         </Link>
         <div className={styles.actions}>

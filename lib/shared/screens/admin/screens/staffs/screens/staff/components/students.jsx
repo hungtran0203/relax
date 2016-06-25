@@ -22,10 +22,10 @@ export default class Students extends Component {
     closeNew: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     deleteConfirm: PropTypes.bool,
-    deleteConfirmUser: PropTypes.object,
+    deleteConfirmStudent: PropTypes.object,
     cancelDelete: PropTypes.func.isRequired,
     confirmDelete: PropTypes.func.isRequired,
-    deletingUser: PropTypes.bool,
+    deletingStudent: PropTypes.bool,
     search: PropTypes.string.isRequired,
     searchChange: PropTypes.func.isRequired,
     display: PropTypes.string.isRequired,
@@ -40,8 +40,8 @@ export default class Students extends Component {
         <ContentHeader>
           <ContentSearch value={search} onChange={searchChange} />
           <ContentHeaderActions>
-            <ContentDisplays display={display} onChange={displayChange} />
             <ContentNew onClick={openNew}>Dang ki moi</ContentNew>
+            <ContentDisplays display={display} onChange={displayChange} />
           </ContentHeaderActions>
         </ContentHeader>
         <Content noPadding={display === 'list'}>
@@ -70,14 +70,15 @@ export default class Students extends Component {
   }
 
   renderDeleteConfirm () {
-    const {deleteConfirm, deleteConfirmUser, cancelDelete, confirmDelete, deletingUser} = this.props;
+    const {deleteConfirm, deleteConfirmStudent, cancelDelete, confirmDelete, deletingStudent} = this.props;
     if (deleteConfirm) {
+      console.log('aaaa', deleteConfirmStudent)
       return (
         <ModalDelete
-          title={`Are you sure you want to remove the student "${deleteConfirmUser.name}"?`}
+          title={`Are you sure you want to remove the student "${deleteConfirmStudent.name}"?`}
           cancel={cancelDelete}
           submit={confirmDelete}
-          loading={deletingUser}
+          loading={deletingStudent}
         />
       );
     }
