@@ -2,6 +2,8 @@ import bind from 'decorators/bind';
 import Component from 'components/component';
 import React, {PropTypes} from 'react';
 import {addStudent} from 'actions/student';
+import ValidationProvider from 'components/validation';
+import validationConnector from 'helpers/validation-connector';
 
 import New from './new';
 
@@ -25,7 +27,8 @@ export default class NewStudentContainer extends Component {
       email: '',
       notes: '',
 
-      loading: false
+      loading: false,
+      validation: null,
     };
   }
 
@@ -37,13 +40,14 @@ export default class NewStudentContainer extends Component {
       }, () => {
         const {store} = this.context;
         const {fragments, onClose} = this.props;
-        console.log(this.state)
         const {name, birthdate, parentName, phone, registerDate, email, notes} = this.state;
         const actionData = {name, birthdate, parentName, phone, registerDate, email, notes};
-        console.log(actionData, 'lllllllllllll')
-        store.dispatch(addStudent(fragments, actionData, true)).then(() => {
+        store.dispatch(validationConnector(addStudent(fragments, actionData), (err) => {
+          this.setState({loading: false, validation: err})
+        }))
+        .then((result) => {
           onClose && onClose();
-        });
+        })
       });
     }
   }
@@ -57,11 +61,13 @@ export default class NewStudentContainer extends Component {
 
   render () {
     return (
-      <New
-        {...this.state}
-        submit={this.submit}
-        changeField={this.changeField}
-      />
+      <ValidationProvider validation={this.state.validation} >
+        <New
+          {...this.state}
+          submit={this.submit}
+          changeField={this.changeField}
+        />
+      </ValidationProvider>
     );
   }
 }

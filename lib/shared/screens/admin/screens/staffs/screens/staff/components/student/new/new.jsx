@@ -1,7 +1,10 @@
 import Component from 'components/component';
-import ModalInput from 'components/modal-input';
+// import ModalInput from 'components/modal-input';
 import ModalNew from 'components/modal-new';
 import React, {PropTypes} from 'react';
+
+// import DateTimePicker from 'components/modal-datetime-picker';
+import ModalInput from 'components/validation/modal-input';
 
 export default class NewStudentForm extends Component {
   static propTypes = {
@@ -29,42 +32,42 @@ export default class NewStudentForm extends Component {
           focus
           value={name}
           placeholder='Ho va ten'
+          field="name"
           onChange={this.changeField.bind(this, 'name')}
         />
+        {/*<DateTimePicker
+          value={new Date(birthdate)}
+          placeholder='Ngay sinh'
+          onChange={this.changeField.bind(this, 'birthdate')}
+        />*/}
         <ModalInput
-          focus
           value={birthdate}
           placeholder='Ngay sinh'
+          field="birthdate"
           onChange={this.changeField.bind(this, 'birthdate')}
         />
         <ModalInput
-          focus
           value={parentName}
           placeholder='Ten phu huynh'
+          field="parentName"
           onChange={this.changeField.bind(this, 'parentName')}
         />
         <ModalInput
-          focus
           value={phone}
           placeholder='Dien thoai lien he'
+          field="phone"
           onChange={this.changeField.bind(this, 'phone')}
         />
         <ModalInput
-          focus
-          value={registerDate}
-          placeholder='Ngay dang ki'
-          onChange={this.changeField.bind(this, 'registerDate')}
-        />
-        <ModalInput
-          focus
           value={email}
           type="email"
+          field="email"
           placeholder='Email'
           onChange={this.changeField.bind(this, 'email')}
         />
         <ModalInput
-          focus
           value={notes}
+          field="notes"
           placeholder='Ghi chu'
           onChange={this.changeField.bind(this, 'notes')}
         />

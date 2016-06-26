@@ -1,0 +1,61 @@
+@import '~styles/colors.less';
+
+.holder {
+  display: block;
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid @adminBordersInputs;
+  margin-bottom: 20px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0 3px;
+  color: @adminText;
+  font-size: 16px;
+  line-height: 35px;
+  padding-right: 40px;
+
+  &::-webkit-input-placeholder {
+    color: @adminTextSub;
+  }
+  &:-moz-placeholder {
+    color: @adminTextSub;
+  }
+  &::-moz-placeholder {
+    color: @adminTextSub;
+  }
+  &:-ms-input-placeholder {
+    color: @adminTextSub;
+  }
+  &::-ms-input-placeholder {
+    color: @adminTextSub;
+  }
+  &:placeholder-shown {
+    color: @adminTextSub;
+  }
+
+  &:focus {
+    border-color: @primary;
+  }
+}
+
+.invalid {
+  border-color: @alert;
+}
+
+.icon {
+  font-size: 10px;
+  line-height: 35px;
+  color: @success;
+  position: absolute;
+  right: 5px;
+  top: 0;
+
+  &.invalidIco {
+    color: @alert;
+  }
+}
