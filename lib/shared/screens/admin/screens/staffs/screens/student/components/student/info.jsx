@@ -4,6 +4,9 @@ import getGravatarImage from 'helpers/get-gravatar-image';
 import Component from 'components/component';
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import EditableTitle from 'components/editable-title';
+import {updateField} from 'actions/student';
+import validationConnector from 'helpers/validation-connector';
 
 import styles from './info.less';
 
@@ -25,6 +28,19 @@ export default class Info extends Component {
     student: PropTypes.object.isRequired,
   };
 
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
+  @bind
+  updateField (title) {
+    const {student} = this.props;
+    const {store} = this.context;
+    return store.dispatch(validationConnector(updateField(student._id, title), (err) => {
+      this.setState({loading: false, validation: err})
+    }))
+  }
+
   render () {
     const {student, display} = this.props;
     const url = getGravatarImage(student.email, 125);
@@ -34,8 +50,8 @@ export default class Info extends Component {
           <img src={url} role='presentation' />
         </div>
         <div className={styles.info}>
-        <div className={styles.title}>Ho va ten:</div>
-          <div className={styles.title}>{student.name}</div>
+          <div className={styles.title}>Ho va ten:</div>
+          <EditableTitle value={student.name} onSubmit={this.updateField} />
         </div>
         <div className={styles.info}>
           <div className={styles.title}>Ngay sinh:</div>
@@ -43,7 +59,7 @@ export default class Info extends Component {
         </div>
         <div className={styles.info}>
           <div className={styles.title}>Ten phu huynh:</div>
-          <div className={styles.title}>{student.parentName}</div>
+          <EditableTitle value={student.parentName} onSubmit={this.updateField} />
         </div>
         <div className={styles.info}>
           <div className={styles.title}>Phone:</div>
