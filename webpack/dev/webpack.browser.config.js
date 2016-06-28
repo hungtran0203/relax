@@ -4,6 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var config = require('../../config');
 var autoprefixer = require('autoprefixer');
+var path = require('path');
 
 var NoErrorsPlugin = webpack.NoErrorsPlugin;
 var optimize = webpack.optimize;
@@ -21,6 +22,12 @@ var webpackConfig = module.exports = {
   },
   devtool: 'eval',
   resolve: {
+    root: path.join(__dirname, '..', '..'),
+    alias: {
+      root_lib: 'lib',
+      modules: 'lib/modules',
+      shared_components: 'lib/shared/screens/admin/shared/components'
+    },
     modulesDirectories: ['shared', 'node_modules'],
     extensions: ['', '.js', '.jsx', '.json']
   },

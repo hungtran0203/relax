@@ -9,6 +9,12 @@ var webpackConfig = module.exports = {
   externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   devtool: 'cheap-module-source-map',
   resolve: {
+    root: path.join(__dirname, '..', '..'),
+    alias: {
+      root_lib: 'lib',
+      modules: 'lib/modules',
+      shared_components: 'lib/shared/screens/admin/shared/components'
+    },
     modulesDirectories: ['shared', 'node_modules'],
     extensions: ['', '.js', '.jsx', '.json']
   },

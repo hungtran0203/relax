@@ -2,7 +2,6 @@
 var webpack = require('webpack');
 var path = require('path');
 var nodeExternals = require('webpack-node-externals');
-
 module.exports = {
   entry: './app.js',
   output: {
@@ -10,6 +9,12 @@ module.exports = {
     filename: 'app.js'
   },
   resolve: {
+    root: path.join(__dirname, '..', '..'),
+    alias: {
+      root_lib: 'lib',
+      modules: 'lib/modules',
+      shared_components: 'lib/shared/screens/admin/shared/components'
+    },
     modulesDirectories: ['shared', 'node_modules'],
     extensions: ['', '.js', '.jsx', '.json']
   },

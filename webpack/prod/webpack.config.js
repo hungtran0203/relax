@@ -7,6 +7,12 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
 var commonResolve = {
+  root: path.join(__dirname, '..', '..'),
+  alias: {
+    root_lib: 'lib',
+    modules: 'lib/modules',
+    shared_components: 'lib/shared/screens/admin/shared/components'
+  },
   modulesDirectories: ['shared', 'node_modules'],
   extensions: ['', '.js', '.jsx', '.json']
 };
