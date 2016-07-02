@@ -46,36 +46,48 @@ export default class Info extends Component {
     const url = getGravatarImage(student.email, 125);
     return (
       <div className={cx(styles.root, styles[display])}>
-        <div className={styles.student}>
-          <img src={url} role='presentation' />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ho va ten:</div>
-          <EditableTitle value={student.name} onSubmit={this.updateField.bind(this, 'name')} />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ngay sinh:</div>
-          <div className={styles.title}>{student.birthdate}</div>
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ten phu huynh:</div>
-          <EditableTitle value={student.parentName} onSubmit={this.updateField.bind(this, 'parentName')} />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Phone:</div>
-          <EditableTitle value={student.phone} onSubmit={this.updateField.bind(this, 'phone')} />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ngay dang ky:</div>
-          <div className={styles.title}>{student.registerDate}</div>
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Email:</div>
-          <div className={styles.title}>{student.email}</div>
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ghi chu:</div>
-          <div className={styles.title}>{student.notes}</div>
+        <div className='grid'>
+          <div className='info-col-left'>
+            <div className={styles.avatar}>
+              <img src={url} role='presentation' />
+            </div>
+          </div>
+          <div className='info-col-right'>
+            <div className={styles.info}>
+              <div className={styles.label}>Ho va ten:</div>
+              <div className={styles.input}>
+                <EditableTitle value={student.name} onSubmit={this.updateField.bind(this, 'name')} />
+              </div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.label}>Ngay sinh:</div>
+              <div className={styles.input}>{student.birthdate}</div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.label}>Ten phu huynh:</div>
+              <div className={styles.input}>
+                <EditableTitle className={styles.input} value={student.parentName} onSubmit={this.updateField.bind(this, 'parentName')} />
+              </div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.label}>Phone:</div>
+              <div className={styles.input}>
+                <EditableTitle className={styles.input} value={student.phone} onSubmit={this.updateField.bind(this, 'phone')} />
+              </div>                
+            </div>
+            <div className={styles.info}>
+              <div className={styles.label}>Ngay dang ky:</div>
+              <div className={styles.input}>{student.registerDate}</div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.label}>Email:</div>
+              <div className={styles.input}>{student.email}</div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.label}>Ghi chu:</div>
+              <div className={styles.input}>{student.notes}</div>
+            </div>
+          </div>
         </div>
       </div>
     );
