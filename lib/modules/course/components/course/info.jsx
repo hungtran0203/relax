@@ -53,7 +53,7 @@ export default class Info extends Component {
       <div>
         <div className={styles.info}>
           <div className={styles.title}>Danh sach hoc sinh:</div>
-          <StudentList students={course.students} />
+          <StudentList students={course.students} course={course} fragments={Info.fragments}/>
         </div>
         <div className={cx(styles.root, styles[display])}>
           <div className={styles.info}>

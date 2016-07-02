@@ -72,7 +72,6 @@ export default class Students extends Component {
   renderDeleteConfirm () {
     const {deleteConfirm, deleteConfirmStudent, cancelDelete, confirmDelete, deletingStudent} = this.props;
     if (deleteConfirm) {
-      console.log('aaaa', deleteConfirmStudent)
       return (
         <ModalDelete
           title={`Are you sure you want to remove the student "${deleteConfirmStudent.name}"?`}
