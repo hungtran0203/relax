@@ -8,6 +8,7 @@ import EditableTitle from 'shared_components/editable-title';
 import {updateField} from 'modules/course/actions/course';
 import validationConnector from 'root_lib/shared/helpers/validation-connector';
 
+import StudentList from './StudentList'
 import styles from './info.less';
 
 export default class Info extends Component {
@@ -15,12 +16,17 @@ export default class Info extends Component {
     course: {
       _id: 1,
       name: 1,
-      birthdate: 1,
-      parentName: 1,
-      phone: 1,
-      registerDate: 1,
-      email: 1,
-      notes: 1,
+      startDate: 1,
+      endDate: 1,
+      status: 1,
+      students: {
+        name: 1,
+        score: 1,
+        notes: 1,
+      },
+      studentCount: 1,
+      teachers: 1,
+      assistants: 1,
     }
   };
 
@@ -43,39 +49,41 @@ export default class Info extends Component {
 
   render () {
     const {course, display} = this.props;
-    const url = getGravatarImage(course.email, 125);
     return (
-      <div className={cx(styles.root, styles[display])}>
-        <div className={styles.course}>
-          <img src={url} role='presentation' />
-        </div>
+      <div>
         <div className={styles.info}>
-          <div className={styles.title}>Ho va ten:</div>
-          <EditableTitle value={course.name} onSubmit={this.updateField.bind(this, 'name')} />
+          <div className={styles.title}>Danh sach hoc sinh:</div>
+          <StudentList students={course.students} />
         </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ngay sinh:</div>
-          <div className={styles.title}>{course.birthdate}</div>
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ten phu huynh:</div>
-          <EditableTitle value={course.parentName} onSubmit={this.updateField.bind(this, 'parentName')} />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Phone:</div>
-          <EditableTitle value={course.phone} onSubmit={this.updateField.bind(this, 'phone')} />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ngay dang ky:</div>
-          <div className={styles.title}>{course.registerDate}</div>
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Email:</div>
-          <div className={styles.title}>{course.email}</div>
-        </div>
-        <div className={styles.info}>
-          <div className={styles.title}>Ghi chu:</div>
-          <div className={styles.title}>{course.notes}</div>
+        <div className={cx(styles.root, styles[display])}>
+          <div className={styles.info}>
+            <div className={styles.title}>Ma lop:</div>
+            <EditableTitle value={course.name} onSubmit={this.updateField.bind(this, 'name')} />
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>So luong hoc sinh:</div>
+            <div className={styles.title}>{course.studentCount}</div>
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>Ngay bat dau:</div>
+            <EditableTitle value={course.startDate} onSubmit={this.updateField.bind(this, 'startDate')} />
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>Ngay ket thuc:</div>
+            <EditableTitle value={course.endDate} onSubmit={this.updateField.bind(this, 'endDate')} />
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>Tinh trang:</div>
+            <div className={styles.title}>{course.status}</div>
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>Giao vien:</div>
+            <div className={styles.title}>{course.teachers}</div>
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>Tro giang:</div>
+            <div className={styles.title}>{course.asisstants}</div>
+          </div>
         </div>
       </div>
     );

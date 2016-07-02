@@ -13,7 +13,7 @@ export default class Entry extends Component {
       _id: 1,
       name: 1,
       slug: 1,
-      email: 1
+      studentCount: 1,
     }
   };
 
@@ -41,6 +41,9 @@ export default class Entry extends Component {
           </div>
           <div className={styles.info}>
             <div className={styles.title}>{course.name}</div>
+          </div>
+          <div className={styles.info}>
+            <div className={styles.title}>So hoc sinh: {course.studentCount}</div>
           </div>
         </Link>
         <div className={styles.actions}>

@@ -40,7 +40,7 @@ export default class Courses extends Component {
         <ContentHeader>
           <ContentSearch value={search} onChange={searchChange} />
           <ContentHeaderActions>
-            <ContentNew onClick={openNew}>Dang ki moi</ContentNew>
+            <ContentNew onClick={openNew}>Mo lop</ContentNew>
             <ContentDisplays display={display} onChange={displayChange} />
           </ContentHeaderActions>
         </ContentHeader>
@@ -62,7 +62,7 @@ export default class Courses extends Component {
     const {newOpened, closeNew} = this.props;
     if (newOpened) {
       return (
-        <Modal small subTitle='Dang ki moi' title='Nhap thong tin hoc sinh moi' onClose={closeNew}>
+        <Modal small subTitle='Tao lop hoc' title='Nhap thong tin lop hoc' onClose={closeNew}>
           <New fragments={Courses.fragments} onClose={closeNew} />
         </Modal>
       );
@@ -72,10 +72,9 @@ export default class Courses extends Component {
   renderDeleteConfirm () {
     const {deleteConfirm, deleteConfirmCourse, cancelDelete, confirmDelete, deletingCourse} = this.props;
     if (deleteConfirm) {
-      console.log('aaaa', deleteConfirmCourse)
       return (
         <ModalDelete
-          title={`Are you sure you want to remove the course "${deleteConfirmCourse.name}"?`}
+          title={`Ban co chac chan muon huy bo lop "${deleteConfirmCourse.name}"?`}
           cancel={cancelDelete}
           submit={confirmDelete}
           loading={deletingCourse}

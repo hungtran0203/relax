@@ -4,6 +4,7 @@ import React, {PropTypes} from 'react';
 import {addCourse} from 'modules/course/actions/course';
 import ValidationProvider from 'shared_components/validation';
 import validationConnector from 'root_lib/shared/helpers/validation-connector';
+import { pick } from 'lodash'
 
 import New from './new';
 
@@ -20,12 +21,6 @@ export default class NewCourseContainer extends Component {
   getInitState () {
     return {
       name: '',
-      birthdate: '',
-      parentName: '',
-      phone: '',
-      registerDate: '',
-      email: '',
-      notes: '',
 
       loading: false,
       validation: null,
@@ -40,8 +35,7 @@ export default class NewCourseContainer extends Component {
       }, () => {
         const {store} = this.context;
         const {fragments, onClose} = this.props;
-        const {name, birthdate, parentName, phone, registerDate, email, notes} = this.state;
-        const actionData = {name, birthdate, parentName, phone, registerDate, email, notes};
+        const actionData = pick(this.state, ['name'])
         store.dispatch(validationConnector(addCourse(fragments, actionData), (err) => {
           this.setState({loading: false, validation: err})
         }))

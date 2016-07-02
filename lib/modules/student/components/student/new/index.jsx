@@ -4,6 +4,7 @@ import React, {PropTypes} from 'react';
 import {addStudent} from 'modules/student/actions/student';
 import ValidationProvider from 'shared_components/validation';
 import validationConnector from 'root_lib/shared/helpers/validation-connector';
+import {pick} from 'lodash'
 
 import New from './new';
 
@@ -40,8 +41,7 @@ export default class NewStudentContainer extends Component {
       }, () => {
         const {store} = this.context;
         const {fragments, onClose} = this.props;
-        const {name, birthdate, parentName, phone, registerDate, email, notes} = this.state;
-        const actionData = {name, birthdate, parentName, phone, registerDate, email, notes};
+        const actionData = pick(this.state, ['name', 'birthdate', 'parentName', 'phone', 'registerDate', 'email', 'notes'])
         store.dispatch(validationConnector(addStudent(fragments, actionData), (err) => {
           this.setState({loading: false, validation: err})
         }))
