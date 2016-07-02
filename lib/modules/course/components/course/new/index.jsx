@@ -1,13 +1,13 @@
 import bind from 'decorators/bind';
 import Component from 'components/component';
 import React, {PropTypes} from 'react';
-import {addStudent} from 'modules/student/actions/student';
+import {addCourse} from 'modules/course/actions/course';
 import ValidationProvider from 'shared_components/validation';
 import validationConnector from 'root_lib/shared/helpers/validation-connector';
 
 import New from './new';
 
-export default class NewStudentContainer extends Component {
+export default class NewCourseContainer extends Component {
   static propTypes = {
     fragments: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired
@@ -42,7 +42,7 @@ export default class NewStudentContainer extends Component {
         const {fragments, onClose} = this.props;
         const {name, birthdate, parentName, phone, registerDate, email, notes} = this.state;
         const actionData = {name, birthdate, parentName, phone, registerDate, email, notes};
-        store.dispatch(validationConnector(addStudent(fragments, actionData), (err) => {
+        store.dispatch(validationConnector(addCourse(fragments, actionData), (err) => {
           this.setState({loading: false, validation: err})
         }))
         .then((result) => {

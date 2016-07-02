@@ -20,7 +20,7 @@ export default class List extends Component {
         _id: 'students', date: 1466560761976, state: 'draft', title: 'Danh sách học sinh'
       },
       {
-        _id: 'class', date: 1466560761976, state: 'draft', title: 'Xếp lớp'
+        _id: 'courses', date: 1466560761976, state: 'draft', title: 'Xếp lớp'
       },
       {
         _id: 'report', date: 1466560761976, state: 'draft', title: 'Báo cáo'
