@@ -7,6 +7,9 @@ import {Link} from 'react-router';
 import EditableTitle from 'shared_components/editable-title';
 import {updateField} from 'modules/course/actions/course';
 import validationConnector from 'root_lib/shared/helpers/validation-connector';
+import { Combobox } from 'react-widgets';
+
+import EditableDateTime from 'modules/components/EditableDateTime';
 
 import StudentList from './StudentList'
 import styles from './info.less';
@@ -50,39 +53,52 @@ export default class Info extends Component {
   render () {
     const {course, display} = this.props;
     return (
-      <div>
-        <div className={styles.info}>
-          <div className={styles.title}>Danh sach hoc sinh:</div>
-          <StudentList students={course.students} course={course} fragments={Info.fragments}/>
-        </div>
-        <div className={cx(styles.root, styles[display])}>
-          <div className={styles.info}>
-            <div className={styles.title}>Ma lop:</div>
-            <EditableTitle value={course.name} onSubmit={this.updateField.bind(this, 'name')} />
+      <div className={cx(styles.root, styles[display])}>
+        <div className='grid'>
+          <div className='info-col-left'>
+            <div className={styles.info}>
+              <div className={styles.title}>Ma lop:</div>
+              <EditableTitle value={course.name} onSubmit={this.updateField.bind(this, 'name')} />
+            </div>
+            <div className={styles.info}>
+              <div className={styles.title}>So luong hoc sinh:</div>
+              <div className={styles.title}>{course.studentCount}</div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.title}>Ngay bat dau:</div>
+              <EditableDateTime
+                value={course.startDate}
+                onSubmit={this.updateField.bind(this, 'startDate')}
+                time={false}
+              />
+            </div>
+            <div className={styles.info}>
+              <div className={styles.title}>Ngay ket thuc:</div>
+              <EditableDateTime
+                value={course.endDate}
+                onSubmit={this.updateField.bind(this, 'endDate')}
+                min={new Date(course.startDate)}
+                time={false}
+              />
+            </div>
+            <div className={styles.info}>
+              <div className={styles.title}>Tinh trang:</div>
+              <div className={styles.title}>{course.status}</div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.title}>Giao vien:</div>
+              <div className={styles.title}>{course.teachers}</div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.title}>Tro giang:</div>
+              <div className={styles.title}>{course.asisstants}</div>
+            </div>
           </div>
-          <div className={styles.info}>
-            <div className={styles.title}>So luong hoc sinh:</div>
-            <div className={styles.title}>{course.studentCount}</div>
-          </div>
-          <div className={styles.info}>
-            <div className={styles.title}>Ngay bat dau:</div>
-            <EditableTitle value={course.startDate} onSubmit={this.updateField.bind(this, 'startDate')} />
-          </div>
-          <div className={styles.info}>
-            <div className={styles.title}>Ngay ket thuc:</div>
-            <EditableTitle value={course.endDate} onSubmit={this.updateField.bind(this, 'endDate')} />
-          </div>
-          <div className={styles.info}>
-            <div className={styles.title}>Tinh trang:</div>
-            <div className={styles.title}>{course.status}</div>
-          </div>
-          <div className={styles.info}>
-            <div className={styles.title}>Giao vien:</div>
-            <div className={styles.title}>{course.teachers}</div>
-          </div>
-          <div className={styles.info}>
-            <div className={styles.title}>Tro giang:</div>
-            <div className={styles.title}>{course.asisstants}</div>
+          <div className='info-col-right'>
+            <div className={styles.info}>
+              <div className={styles.title}>Danh sach hoc sinh:</div>
+              <StudentList students={course.students} course={course} fragments={Info.fragments}/>
+            </div>
           </div>
         </div>
       </div>

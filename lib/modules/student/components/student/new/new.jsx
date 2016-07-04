@@ -5,11 +5,12 @@ import React, {PropTypes} from 'react';
 
 // import DateTimePicker from 'components/modal-datetime-picker';
 import ModalInput from 'shared_components/validation/modal-input';
+import EditableDateTime from 'modules/components/EditableDateTime';
 
 export default class NewStudentForm extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    birthdate: PropTypes.string.isRequired,
+    birthdate: PropTypes.number.isRequired,
     parentName: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     registerDate: PropTypes.string.isRequired,
@@ -35,16 +36,14 @@ export default class NewStudentForm extends Component {
           field="name"
           onChange={this.changeField.bind(this, 'name')}
         />
-        {/*<DateTimePicker
-          value={new Date(birthdate)}
-          placeholder='Ngay sinh'
-          onChange={this.changeField.bind(this, 'birthdate')}
-        />*/}
-        <ModalInput
+        <EditableDateTime
           value={birthdate}
           placeholder='Ngay sinh'
           field="birthdate"
-          onChange={this.changeField.bind(this, 'birthdate')}
+          time={false}
+          onSubmit={this.changeField.bind(this, 'birthdate')}
+          editing={true}
+          max={new Date()}
         />
         <ModalInput
           value={parentName}

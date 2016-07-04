@@ -7,6 +7,7 @@ import {Link} from 'react-router';
 import EditableTitle from 'shared_components/editable-title';
 import {updateField} from 'modules/student/actions/student';
 import validationConnector from 'root_lib/shared/helpers/validation-connector';
+import EditableDateTime from 'modules/components/EditableDateTime';
 
 import styles from './info.less';
 
@@ -61,7 +62,16 @@ export default class Info extends Component {
             </div>
             <div className={styles.info}>
               <div className={styles.label}>Ngay sinh:</div>
-              <div className={styles.input}>{student.birthdate}</div>
+              <div className={styles.input}>
+                <EditableDateTime
+                  value={student.birthdate}
+                  placeholder='Ngay sinh'
+                  field="birthdate"
+                  time={false}
+                  onSubmit={this.updateField.bind(this, 'birthdate')}
+                  max={new Date()}
+                />
+              </div>
             </div>
             <div className={styles.info}>
               <div className={styles.label}>Ten phu huynh:</div>
@@ -73,7 +83,7 @@ export default class Info extends Component {
               <div className={styles.label}>Phone:</div>
               <div className={styles.input}>
                 <EditableTitle className={styles.input} value={student.phone} onSubmit={this.updateField.bind(this, 'phone')} />
-              </div>                
+              </div>
             </div>
             <div className={styles.info}>
               <div className={styles.label}>Ngay dang ky:</div>
@@ -85,7 +95,9 @@ export default class Info extends Component {
             </div>
             <div className={styles.info}>
               <div className={styles.label}>Ghi chu:</div>
-              <div className={styles.input}>{student.notes}</div>
+              <div className={styles.input}>
+                <EditableTitle value={student.notes} onSubmit={this.updateField.bind(this, 'notes')} />
+              </div>
             </div>
           </div>
         </div>

@@ -3,6 +3,9 @@ import React, {PropTypes} from 'react';
 import bind from 'decorators/bind';
 import { addStudentToCourse, removeStudentFromCourse } from '../../actions/course';
 import { pick } from 'lodash'
+import EditableTitle from 'shared_components/editable-title';
+
+import styles from './info.less'
 
 export default class StudentList extends Component {
   static propTypes = {
@@ -138,6 +141,10 @@ export default class StudentList extends Component {
     );
   }
 
+  updateStudentField(id, field, value) {
+    return Promise.resolve(true)
+  }
+
   renderEntry (student) {
     const {onDelete, search, display} = this.props;
     const inSearch = !search || student.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
@@ -145,9 +152,23 @@ export default class StudentList extends Component {
       return (
         <tr key={student._id}>
           <td></td>
-          <td>{student.name}</td>
-          <td>{student.score}</td>
-          <td>{student.notes}</td>
+          <td className={styles.input}>
+            {student.name}
+          </td>
+          <td>
+            <EditableTitle
+              className={styles.input}
+              value={student.score}
+              onSubmit={this.updateStudentField.bind(this, student._id, 'score')}
+            />
+          </td>
+          <td>
+            <EditableTitle
+              className={styles.input}
+              value={student.notes}
+              onSubmit={this.updateStudentField.bind(this, student._id, 'notes')}
+            />
+          </td>
           <td>
             <button onClick={this.onRemoveStudent.bind(this, student.name)}>Xoa</button>
           </td>

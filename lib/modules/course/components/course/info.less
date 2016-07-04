@@ -1,7 +1,104 @@
 @import '~styles/colors.less';
 
 .root {
+  margin-left: -20px;
+  margin-right: -20px;
 }
+
+:global {
+  .grid {
+    &:before, &:after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+  }
+  .info-col-left {
+    width: 30%;
+    float: left;
+  }
+
+  .info-col-right {
+    width: 70%;
+    float: left;
+    padding-left: 15px;
+  }
+
+  @media screen and (max-width: 1036px) {
+    .info-col-left, .info-col-right {
+      float: none;
+      width: 100%;
+    }
+    .info-col-right {
+      margin-top: 15px;
+      padding-left: 0;
+    }
+  }
+}
+
+.avatar {
+  img {
+    width: 100%;
+  }
+  @media screen and (max-width: 1036px) {
+    img {
+      width: auto;
+    }
+  }
+}
+.name {
+
+}
+
+.info {
+  padding-top: 15px;
+  text-align: left;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:before, &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+  input {
+    margin-top: -4px;
+    width: 60%;
+    border-bottom: 2px solid #ea4335;
+    transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  }
+  button[class*='__editButton__'] {
+    text-align: left;
+    margin-top: -3px;
+    width: 60%;
+    border-bottom: 1px solid #efefef;
+  }
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  float: left;
+  width: 26.2%;
+  @media screen and (max-width: 864px) {
+    float: none;
+    width: 100%
+  }
+}
+.input {
+  font-size: 16px;
+  float: left;
+  width: 73.8%;
+  @media screen and (max-width: 864px) {
+    float: none;
+    width: 100%
+  }
+}
+
 
 .link {
   display: block;
@@ -18,17 +115,13 @@
   margin-top: 10px;
 }
 
-.info {
-  padding: 15px;
-  height: 65px;
-  text-align: center;
-}
 
 .title {
   color: @adminTextHighlight;
   font-size: 16px;
   line-height: 19px;
 }
+
 
 .value {
   color: @adminText;
@@ -87,63 +180,62 @@
   }
 }
 
-.grid {
-  width: 21.25%;
-  margin-right: 5%;
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: 60px;
-  text-align: center;
-  border: 1px solid transparent;
+// .grid {
+//   // width: 21.25%;
+//   margin-right: 5%;
+//   display: inline-block;
+//   vertical-align: top;
+//   margin-bottom: 60px;
+//   text-align: center;
+//   border: 1px solid transparent;
 
 
-  &:hover {
-    border: 1px solid @adminBorders;
-    .actions {
-      visibility: visible;
-    }
-  }
+//   &:hover {
+//     border: 1px solid @adminBorders;
+//     .actions {
+//       visibility: visible;
+//     }
+//   }
+  // @media screen and (min-width: 1501px) {
+  //   &.root {
+  //     width: 16%;
+  //     &:nth-child(5n+5) {
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 
-  @media screen and (min-width: 1501px) {
-    &.root {
-      width: 16%;
-      &:nth-child(5n+5) {
-        margin-right: 0;
-      }
-    }
-  }
+  // @media screen and (max-width: 1500px) and (min-width: 1101px) {
+  //   &.root {
+  //     &:nth-child(4n+4) {
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 
-  @media screen and (max-width: 1500px) and (min-width: 1101px) {
-    &.root {
-      &:nth-child(4n+4) {
-        margin-right: 0;
-      }
-    }
-  }
+  // @media screen and (max-width: 1100px) and (min-width: 851px) {
+  //   &.root {
+  //     width: 30%;
+  //     &:nth-child(3n+3) {
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 
-  @media screen and (max-width: 1100px) and (min-width: 851px) {
-    &.root {
-      width: 30%;
-      &:nth-child(3n+3) {
-        margin-right: 0;
-      }
-    }
-  }
+  // @media screen and (max-width: 850px) and (min-width: 751px) {
+  //   &.root {
+  //     width: 45%;
+  //     margin-right: 10%;
+  //     &:nth-child(2n+2) {
+  //       margin-right: 0;
+  //     }
+  //   }
+  // }
 
-  @media screen and (max-width: 850px) and (min-width: 751px) {
-    &.root {
-      width: 45%;
-      margin-right: 10%;
-      &:nth-child(2n+2) {
-        margin-right: 0;
-      }
-    }
-  }
-
-  @media screen and (max-width: 750px) {
-    &.root {
-      width: 100%;
-      margin-right: 0%;
-    }
-  }
-}
+  // @media screen and (max-width: 750px) {
+  //   &.root {
+  //     width: 100%;
+  //     margin-right: 0%;
+  //   }
+  // }
+// }
