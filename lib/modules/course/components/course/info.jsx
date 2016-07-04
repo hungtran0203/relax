@@ -23,6 +23,7 @@ export default class Info extends Component {
       endDate: 1,
       status: 1,
       students: {
+        studentId: 1,
         name: 1,
         score: 1,
         notes: 1,
